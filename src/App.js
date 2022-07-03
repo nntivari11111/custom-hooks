@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import { UseTimeout } from './Hooks/UseTimeout';
+import {useEffect, useState} from "react";
 import './App.css';
+import { UseFetch } from './Hooks/UseFetch';
 
 function App() {
+  const {data, loading, error} = UseFetch(
+    "https://api.github.com/search/users?q=masai")
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h2>{loading && "Loading"}</h2>
+     {data?.length > 0 && 
+     data.map((item) => {
+      return <h3 key={item.id }>{item.login}</h3>
+     })}
     </div>
   );
 }
