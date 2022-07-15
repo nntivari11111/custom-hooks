@@ -2,7 +2,6 @@ import {useState, useEffect} from "react";
 
 const UseTimeout = () => {
     const [ready, setReady] = useState(false);
-
   useEffect(() => {
     let timer = setTimeout(() =>{
       setReady(true);
